@@ -53,8 +53,8 @@ def audio():
             tts_file = TTS().process(final_response)
             return {"result": "ok", "text": final_response, "file": tts_file}
         
-        elif function_name == "dominate_human_race":
-            final_response = "No te creas. Suscríbete al canal!"
+        elif function_name == "crear_oc":
+            final_response = "Ingrese en Nro de Proceso, nro de entrega, nro de orden de compra, la entidad, la fecha de inicio, fecha de entrega y el comentario de Licitaciones."
             tts_file = TTS().process(final_response)
             return {"result": "ok", "text": final_response, "file": tts_file}
     else:

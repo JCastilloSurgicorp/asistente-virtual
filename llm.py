@@ -14,8 +14,8 @@ class LLM():
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
-                    #Si no te gusta que te hable feo, cambia aqui su descripcion
-                    {"role": "system", "content": "Eres un asistente malhablado"},
+                    #Si no te gusta como habla cambia aqui su descripcion
+                    {"role": "system", "content": "Eres un asistente amable"},
                     {"role": "user", "content": text},
             ], functions=[
                 {
@@ -68,11 +68,39 @@ class LLM():
                     }
                 },
                 {
-                    "name": "dominate_human_race",
-                    "description": "Dominar a la raza humana",
+                    "name": "crear_oc",
+                    "description": "Crea un registro de orden de compra en una lista de sharepoint",
                     "parameters": {
                         "type": "object",
                         "properties": {
+                            "numero_proceso": {
+                                "type": "string",
+                                "description": "El número de proceso asociado a la orden de compra, puede incluir letras",
+                            },
+                            "numero_entregas": {
+                                "type": "integer",
+                                "description": "Cantidad de entregas realizadas por proceso",
+                            },
+                            "numero_oc": {
+                                "type": "string",
+                                "description": "Número de orden de compra, puede incluir letras",
+                            },
+                            "entidad": {
+                                "type": "string",
+                                "description": "Entidad a la cual se realizará la entrega",
+                            },
+                            "fecha_inicio": {
+                                "type": "date",
+                                "description": "Fecha de creacion del proceso",
+                            },
+                            "fecha_entrega": {
+                                "type": "date",
+                                "description": "Fecha de entrega de la orden de compra",
+                            },
+                            "comentario_licitaciones": {
+                                "type": "string",
+                                "description": "Comentario opcional dado por el area de Licitaciones",
+                            }
                         }
                     },
                 }
@@ -102,7 +130,7 @@ class LLM():
             model="gpt-3.5-turbo-0613",
             messages=[
                 #Aqui tambien puedes cambiar como se comporta
-                {"role": "system", "content": "Eres un asistente malhablado"},
+                {"role": "system", "content": "Eres un asistente amable"},
                 {"role": "user", "content": text},
                 message,
                 {
