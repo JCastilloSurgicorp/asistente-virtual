@@ -12,8 +12,8 @@ class Transcriber:
     def transcribe(self, audio):
         audio.save("audio.mp3")
         Source = open("audio.mp3", "rb")
-        with Source as S:
-            audio_file = r.listen(source=S)
+        with sr.AudioFile(Source) as S:
+            audio_file = r.record(source=S)
         try:
             transcript = r.recognize_google_cloud(audio_file, language='es-MX')
             print("Dijiste: " + transcript)
