@@ -1,6 +1,11 @@
-import openai
+from openai import OpenAI
 import json
+import os
 
+client = OpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 #Clase para utilizar cualquier LLM para procesar un texto
 #Y regresar una funcion a llamar con sus parametros
 #Uso el modelo 0613, pero puedes usar un poco de
@@ -11,7 +16,7 @@ class LLM():
     
     def process_functions(self, text):
         
-        response = openai.ChatCompletion.create(
+        response = client.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
                     #Si no te gusta como habla cambia aqui su descripcion
@@ -126,7 +131,7 @@ class LLM():
     #respuesta, para obtener una respuesta en lenguaje natural (en caso que la
     #respuesta haya sido JSON por ejemplo
     def process_response(self, text, message, function_name, function_response):
-        response = openai.ChatCompletion.create(
+        response = client.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
                 #Aqui tambien puedes cambiar como se comporta

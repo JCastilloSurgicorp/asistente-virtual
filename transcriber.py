@@ -1,5 +1,7 @@
-import openai
+import speech_recognition as sr
 
+
+r = sr.Recognizer()
 #Convertir audio en texto
 class Transcriber:
     def __init__(self):
@@ -9,6 +11,12 @@ class Transcriber:
     #Utiliza whisper en la nube :) puedes cambiarlo por una impl local
     def transcribe(self, audio):
         audio.save("audio.mp3")
-        audio_file= open("audio.mp3", "rb")
-        transcript = openai.Audio.transcribe("whisper-1", audio_file)
+        Source = open("audio.mp3", "rb")
+        with Source as S:
+            audio_file = r.listen(source=S)
+        try:
+            transcript = r.recognize_google_cloud(audio_file, language='es-MX')
+            print("Dijiste: " + transcript)
+        except:
+            print("No te pude entender")
         return transcript.text
