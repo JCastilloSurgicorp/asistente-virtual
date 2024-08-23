@@ -54,7 +54,7 @@ def audio():
             return {"result": "ok", "text": final_response, "file": tts_file}
         
         elif function_name == "crear_oc":
-            final_response = "Ingrese en Nro de Proceso, nro de entrega, nro de orden de compra, la entidad, la fecha de inicio, fecha de entrega y el comentario de Licitaciones."
+            final_response = "Ingrese en Nro de Proceso, nro de entrega, nro de orden de compra, la entidad, la fecha de inicio, fecha de entrega y el comentario de Licitaciones(Opcional)."
             tts_file = TTS().process(final_response)
             return {"result": "ok", "text": final_response, "file": tts_file}
     else:
